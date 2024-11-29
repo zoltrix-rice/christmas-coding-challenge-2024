@@ -1,7 +1,7 @@
 # 🎄Christmas Coding Challenge 2024🚀
 Welcome to my **Christmas Coding Challenge 2024 repository**! 
 This project is organized by the [Women Coding Community](https://womencodingcommunity.com/). 
-Through this challenge, I'm committing to solving one problem each day using <ins>python</ins> from the book "Learn to Code by Solving Problems" by Daniel Zingaro.
+With this challenge, I'm committing to solve a problem from [DMOJ: Modern Online Judge](https://dmoj.ca/) every day using <ins>python</ins> and the book "Learn to Code by Solving Problems" by Daniel Zingaro.
 
 ## 📋 Challenge Goals
 + Solve one problem daily to improve my python programming skills
