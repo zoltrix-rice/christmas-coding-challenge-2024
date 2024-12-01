@@ -1,0 +1,17 @@
+### Challenge: repeat the word "far" exactly N times without changing the rest of the sentence at all.
+
+### Input: The input consists of a single integer N
+
+### Output: Output on a single line the appropriate sentence with "far" repeated N times. It must match the correct answer exactly!
+
+### Solution:
+
+# Get the number of time to repeat the word "far"
+print("How far is the galaxy? Insert a number between 1 and 5:")
+N = int(input())
+
+# Define the word "far" as a constant 
+word = "far, "
+
+# Output result
+print("A long time ago in a galaxy " + word*(N-1) + "far away...")
