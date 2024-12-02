@@ -1,0 +1,17 @@
+### Challenge: Calculate the temperature in degrees Fahrenheit from a given temperature in degrees Celsius
+
+### Input: The input consists of a single integer, C
+
+### Output: Output the temperature in degrees Fahrenheit which is equivalent to C degrees Celsius
+
+### Solution:
+
+# Get the temperature in degrees Celcius
+print("Insert the Temperature in Degrees Celcius: ")
+C = int(input())
+
+# Calculate the temperature in degrees Fahrenheit
+F = 32 + C * (9/5)
+
+# Output the value
+print("The temperature is " + str(F) + "°F")
