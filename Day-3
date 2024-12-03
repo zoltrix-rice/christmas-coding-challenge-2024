@@ -1,0 +1,21 @@
+### Challenge: Calculate the volume of a right circular cone
+
+### Input: The input consists of the radius of the cone r, and the height of the cone h. Both r and h are between 1 and 100 (min and max values)
+
+### Output: Output the temperature in degrees Fahrenheit which is equivalent to C degrees Celsius
+
+### Solution:
+
+# Import math Library
+import math
+
+# get the values for 'r' and 'h'
+# the "int()" function convert strings to integers
+print('Enter the radius value of the cone')
+radius = int(input())
+print('Enter the height value of the cone')
+height = int(input())
+
+# Calculate the volume
+volume_cone = (math.pi * (radius**2) * height) / 3
+print('The cone volume is:', volume_cone)
