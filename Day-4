@@ -1,0 +1,40 @@
+"""
+### Challenge
+In basketball, three plays score point: a three-point shot, two-point shot, and a one-point free throw.
+You know the number of each of these types of scoring for the two teams: the Apples and the Bananas. 
+Your job is to determine which team won, or if the game ended in a tie.
+
+### Input: 
+The first three lines of input describe the scoring of the Apples, and the next three lines of input describe the scoring of the Bananas.
+For each team, the first line contains the number of successful 3-point shots, the second line contains the number of successful 2-point field goals, and the third line contains the number of successful 1-point free throws. Each number will be an integer between 0 and 100 inclusive.
+
+### Output: 
+The output will be a single character. If the Apples scored more points than the Bananas, output "A". 
+If the Bananas scored more points than the Apples, output "B". Otherwise, output "T", to indicate a tie.
+"""
+
+### Solution:
+
+# Numer of successful three-point shot, two-point shot, and a one-point of the Apples
+apple_threePoint = int(input()) 
+apple_twoPoint = int(input()) 
+apple_onePoint = int(input())
+
+# Total score of the Apples:
+apple_total = apple_threePoint * 3 + apple_twoPoint * 2 + apple_onePoint
+
+# Numer of successful three-point shot, two-point shot, and a one-point of the Bananas
+banana_threePoint = int(input()) 
+banana_twoPoint = int(input()) 
+banana_onePoint = int(input())
+
+# Total score of the Bananas:
+banana_total = banana_threePoint * 3 + banana_twoPoint * 2 + banana_onePoint
+
+# Check which team won the game
+if apple_total > banana_total:
+    print("A") # The Apples won
+elif banana_total > apple_total:
+    print("B") # The Bananas won
+else:
+    print("T") # It was a tie
