@@ -1,0 +1,33 @@
+"""
+### Challenge
+Find out how satisfied C.C. is with the pizza she has received, given the following conditions:
+    - C.C. will be absolutely satisfied if the pizza she gets has a width of 3 units and an extra-cheesiness of at least 95%
+    - C.C. will be fairly satisfied if the pizza she gets has a width of 1 unit and an extra-cheesiness of at most 50%
+    - C.C. will be very satisfied with any other pizza she receives.
+
+### Input
+- The first line of input will contain a single integer W(1<= W <= 3), denoting the width of the pizza C.C. receives.
+- The second line of input will contain another integer C(0 <= C <= 100), representing the percentage of the pizza covered in extra cheese.
+
+### Output
+A single line containing C.C.'s satisfaction with her order in the form: "C.C. is M satisfied with her pizza."
+Here, M is a string describing her satisfaction, which will be one of: absolutely, fairly or very.
+"""
+
+### Solution
+
+# Width of the pizza
+W = int(input())
+
+# Percentage of the pizza covered in extra cheese
+C = int(input())
+
+# Define the satisfaction rate
+if W == 3 and C >= 95:
+    M = "absolutely"
+elif W == 1 and C <= 50:
+    M = "fairly"
+else:
+    M = "very"
+
+print("C.C. is " + M + " satisfied with her pizza.")
