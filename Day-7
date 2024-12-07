@@ -1,0 +1,41 @@
+"""
+### Challenge
+Decide if a composition is more likely written in A-minor or C-major by counting whether there are more main tones of A-minor (A,D,E) or of C-major (C,F,G) among the accented tones (the first tones in each measure).
+If there is an equal number of main tones, determine the scale based on the last tone (which is guaranteed to be either for A-minor or for C-major in any such test case).
+
+For example, examine the well-known melody "Frère Jacques":
+CD|EC|CD|EC|EF|G|GAGF|EC|GAGF|EC|CG|C|CG|C
+The character | separates measures, so the accented tones are, in order: C,E,C,E,E,G,G ...
+Ten of them (Cs and Gs) are main tones of C-major, while six (Es) are main tones of A-Minor.
+Therefore our best estimate is that the song was written in C-major.
+
+### Input
+The first and only line of input contains a sequence of at least 2 and at most 100 characters from the set {A, B, C, D, E, F, G, |}
+This is a simplified notation for a composition, where the character | separates measures. The characters | will never appear adjacent to one another, at the beginning, or at the end of the sequence.
+
+### Output
+The first and only line of output must contain the text C-dur (for C-major) or A-mol (for A-minor)
+"""
+
+### Solution
+
+# Insert the composition
+comp = input()
+
+sum_A = 0 # total number of main tones of A-minor
+sum_C = 0 # total number of main tones of C-major
+
+if comp[0] in 'ADE': sum_A += 1 # Compares, if A D or E are one of the accented tone
+elif comp[0] in 'CFG': sum_C += 1 # Compares, if C F or G are one of the accented tone
+
+for i in range(len(comp)-1):
+    if comp[i] == '|': 
+        x = comp[i+1]
+        if x in 'ADE': sum_A += 1
+        elif x in 'CFG': sum_C += 1
+
+# Compare the results and output, if it's an A-minor or C-major scale
+if sum_C > sum_A or (sum_A == sum_C and comp[-1] == 'C'): 
+    print('C-dur')
+elif sum_C < sum_A or (sum_A == sum_C and comp[-1] == 'A'): 
+    print('A-mol')
