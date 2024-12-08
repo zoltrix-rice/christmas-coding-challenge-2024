@@ -1,0 +1,36 @@
+"""
+### Challenge
+ If we know the label of the wizard that the wand had obeyed before all duels and the outcomes of all N duels that were held one after another, answer the following questions:
+
+    Which wizard did the wand obey after all N duels?
+    How many different wizards did the wand obey?
+
+### Input
+The first line contains an uppercase letter of the English alphabet, the label of the wizard that the wand obeyed at the beginning.
+The second line contains an integer number between 1 and 100, the number of duels from the text of the task.
+In the next N rows there are two different uppercase letters of the English alphabet z1 and z2 separated by a space, whereas the wizard with the label z1 defeated the wizard with the label 
+z2 in the duel.
+
+### Output
+In the first line print an uppercase letter of the English alphabet, answer to the first question from the task description.
+In the second line print an integer number, answer to the second question from the task description.
+"""
+
+### Solution
+
+w = input() # wizard that the wand obeyed at the beginning
+totalDuels = int(input()) # total number of duels
+
+count = 1 # count the number of owners
+owner = w
+
+for i in range(totalDuels):
+    wizard = input() # Results of the individual duels
+
+    if owner == wizard[2]:
+        owner = wizard[0]
+        if owner != w:
+            count += 1
+
+print(owner) # The wizard to whom the Elder Wand obeys after all duels
+print(count) # The number of wizards to whom the wand has obeyed
