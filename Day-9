@@ -1,0 +1,46 @@
+"""
+### Challenge
+Borko puts three opaque cups onto the table next to each other (opening facing down) and a small ball under the leftmost cup. 
+Then he swaps the cups:
+    A. swap_typethe left and the middle cups
+    B. swap_typethe middle and right cups
+    3. swap_typethe left and right cups
+
+### Input
+The first and only line contains a string of at most 50 characters, Borko's moves.
+
+### Output
+Output the index of the cup under which the ball is: 
+    1 if it is under the left cup, 
+    2 if it is under the middle cup or 
+    3 if it is under the right cup.
+"""
+
+### Solution:
+swaps = input() # Get the moves
+
+ball_location = 1 # Initial position of the ball
+
+for swap_type in swaps:
+    if (swap_type == "A" and ball_location == 1):
+        ball_location = 2
+
+    elif (swap_type == "A" and ball_location == 2):
+        ball_location = 1
+            
+    elif (swap_type== "B" and ball_location == 2):
+            ball_location = 3
+
+    elif (swap_type== "B" and ball_location == 3):
+            ball_location = 2
+    
+    elif (swap_type== "C" and ball_location == 1):
+            ball_location = 3
+
+    elif (swap_type== "C" and ball_location == 3):
+            ball_location = 1  
+
+    else:
+            ball_location = ball_location
+
+print(ball_location)
