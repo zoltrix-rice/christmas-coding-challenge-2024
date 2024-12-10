@@ -1,0 +1,60 @@
+"""
+### Challenge
+Martha goes to a casino and brings n quarters. The casino has three slot machines, and she plays them in order until she has no quarters left. That is,
+she plays the first slot machine, then the second, then the third, then back to the first, then the second, and so on. Each play costs one quarter.
+The slot machines operate according to the following rules:
+• The first slot machine pays 30 quarters every 35th time it is played.
+• The second slot machine pays 60 quarters every 100th time it is
+played.
+• The third slot machine pays 9 quarters every 10th time it is played.
+• No other plays pay anything.
+Determine the number of times Martha plays before she has no quarters
+left.
+
+### Input
+The input consists of four lines.
+• The first line contains an integer n, the number of quarters that Martha brings to the casino. n is between 1 and 1,000.
+• The second line contains an integer indicating the number of times that the first slot machine has been played since it last paid. These plays occurred prior to Martha arriving, and Martha’s plays continue from there. For example, suppose that the first slot machine has been played 34 times since it last paid. Then, Martha will win 30 quarters the first time she plays it.
+• The third line contains an integer indicating the number of times that the second slot machine has been played since it last paid.
+• The fourth line contains an integer indicating the number of times that the third slot machine has been played since it last paid
+
+
+### Output
+Output the following sentence, where x is the number of times Martha plays before she has no quarters left:
+Martha plays x times before going broke.
+"""
+
+### Solution
+quarters = int(input())
+first_plays = int(input()) # number times that Martha plays the first slot machine
+second_plays = int(input()) # number times that Martha plays the second slot machine
+third_plays = int(input()) # number times that Martha plays the third slot machine
+plays = 0 # to count the total number of plays
+next_play = 1 # where she plays next. Init in 1 slot machine
+
+while quarters >= 1:
+    plays += 1
+    quarters -= 1 # one quarter less
+
+    if next_play == 1:
+        next_play = 2 # The next play is in the second slot machine
+        first_plays += 1
+        if first_plays == 35:
+            quarters += 30
+            first_plays = 0
+    
+    elif next_play == 2:
+        next_play = 3 # The next play is in the third slot machine
+        second_plays += 1
+        if second_plays == 100:
+            quarters += 60
+            second_plays = 0
+
+    else:
+        next_play = 1 # The next play is in the first slot machine
+        third_plays += 1
+        if third_plays == 10:
+            quarters += 9
+            third_plays = 0
+
+print("Martha plays", plays, "times before going broke.")
