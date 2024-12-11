@@ -29,32 +29,27 @@ quarters = int(input())
 first_plays = int(input()) # number times that Martha plays the first slot machine
 second_plays = int(input()) # number times that Martha plays the second slot machine
 third_plays = int(input()) # number times that Martha plays the third slot machine
-plays = 0 # to count the total number of plays
-next_play = 1 # where she plays next. Init in 1 slot machine
+plays = 0 # to count the total number of plays. Start at 0 - first slot machine
 
 while quarters >= 1:
-    plays += 1
     quarters -= 1 # one quarter less
+    machine = plays % 3
 
-    if next_play == 1:
-        next_play = 2 # The next play is in the second slot machine
+    if machine == 0: # first machine
         first_plays += 1
-        if first_plays == 35:
+        if first_plays % 35 == 0:
             quarters += 30
-            first_plays = 0
     
-    elif next_play == 2:
-        next_play = 3 # The next play is in the third slot machine
+    elif machine == 1: # second machine
         second_plays += 1
-        if second_plays == 100:
+        if second_plays % 100 == 0:
             quarters += 60
-            second_plays = 0
 
-    else:
-        next_play = 1 # The next play is in the first slot machine
-        third_plays += 1
-        if third_plays == 10:
+    else: # third machine
+        third_plays += 1 
+        if third_plays % 10 == 0:
             quarters += 9
-            third_plays = 0
+    
+    plays += 1
 
-print("Martha plays", plays, "times before going broke.")
+print(f'Martha plays {plays} times before going broke.') # using f-string
