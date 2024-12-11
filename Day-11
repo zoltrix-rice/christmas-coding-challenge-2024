@@ -1,0 +1,29 @@
+######### https://dmoj.ca/problem/ccc20j2 ##########
+"""
+### Challenge
+People who study epidemiology use models to analyze the spread of disease. In this problem, we use a simple model.
+When a person has a disease, they infect exactly R other people but only on the very next day. No person is infected more than once. We want to determine when a total of more than P people have had the disease.
+
+### Input
+There are three lines of input. Each line contains one positive integer. The first line contains the value of P.
+The second line contains N, the number of people who have the disease on Day Zero
+The third line contains the value of R. Assume that P < 10^7; N <= P; R <= 10
+
+### Output
+Output the number of the first day on which the total number of people who have had the disease is greater than P.
+"""
+
+### Solution
+P = int(input()) # Max. number of infected people to compare
+N = int(input()) # number of people who have the disease on Day Zero
+R = int(input()) # Number of people infected for one persone on Day One
+
+sum_inf = N # Total number of people so far
+count_day = 0 # day counter
+
+while sum_inf <= P:
+    sum_inf = sum_inf + N * R
+    count_day += 1
+    N = N * R   
+
+print(count_day)
