@@ -1,0 +1,25 @@
+"""
+### Challenge
+Write a program to help Americans translate to Canadian. The rules for detecting American spelling are quite naive: 
+* If the word has more than four letters and has a suffix consisting of a consonant followed by 'or', you may assume it is an American spelling
+* That the equivalent Canadian spelling replaces the 'or' by 'our'. 
+Note: you should treat the letter y as a vowel.
+
+### Input
+The user should type a word (not to exceed 64 letters)
+
+### Output
+If the word appears to use American spelling, the program should echo the Canadian spelling for the same word. 
+If the word does not appear to use American spelling, it should be output without change. 
+When the user types quit! the program should terminate.
+"""
+
+### Solution
+word = '0' # Any word to enter the loop
+while word != 'quit!':
+    word = input()
+    if len(word) > 4 and word[-2:] == 'or' and word[-3] not in 'aeiouy':
+        word = word[:-2] + 'our'
+        print(word) # Canadian spelling 
+    elif word != 'quit!':
+        print(word) # output any oder word than 'quit!'
