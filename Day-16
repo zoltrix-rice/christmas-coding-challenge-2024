@@ -1,0 +1,42 @@
+""" ### Challenge
+We have five favorite songs named A, B, C, D, and E. We've created a playlist of these songs and are using an app to manage the playlist. The songs start off in the order A, B, C, D, E. The app has four buttons:
+• Button 1: Moves the first song of the playlist to the end of the playlist. For example, if the playlist is currently A, B, C, D, E, then it changes to B, C, D, E, A.
+• Button 2: Moves the last song of the playlist to the beginning of the playlist. For example, if the playlist is currently A, B, C, D, E, then it changes to E, A, B, C, D.
+• Button 3: Swaps the first two songs of the playlist. For example, if the playlist is currently A, B, C, D, E, then it changes to be B, A, C, D, E.
+• Button 4: Plays the playlist!
+We're provided a user's button presses. When the user presses button 4, output the order of songs in the playlist.
+
+### Input
+The input consists of pairs of lines, where the first line of a pair gives the number of a button (1, 2, 3, or 4), and the second gives the number of times that the user pressed this button (between 1 and 10). That is, the first line is the number of a button, the second line is the number of times it is pressed, the third line is the number of a button, the fourth line is the number of times it is pressed, and so on. The input ends with these two lines:
+4
+1
+indicating that the user pressed button 4 once.
+
+### Output
+Output the order of songs in the playlist after all button presses. The output must be on one line, with a space separating each pair of songs."""
+
+### Solution
+songs = "ABCDE"
+button = 0
+
+while button != 4: # button 4 outputs playlist
+    button = int(input())
+    times_pressed = int(input())
+
+    if button == 1 and times_pressed > 0: # button 1 moves first to last
+        for i in range(times_pressed):
+            songs = songs[1:] + songs[0]
+    
+    elif button == 2 and times_pressed > 0: # button 2 moves last to first
+        for i in range(times_pressed):
+            songs = songs[-1] + songs[:4]
+
+    elif button == 3 and times_pressed > 0: # button 3 swaps first two songs
+        for i in range(times_pressed):
+            songs = songs[1] + songs[0] + songs[2:]
+
+output = ''
+for i in songs:
+    output = output + i + " "
+
+print(output)
