@@ -1,0 +1,43 @@
+"""### Challenge
+Baker Brie has a number of franchisees, each of which sells baked goods to consumers. Having reached the milestone of being in business for 13 years, Baker Brie will celebrate by awarding bonuses based on sales. The bonuses depend on sales per day and sales per franchisee. Here's how the bonuses work:
+    • For every day on which the total sales across all franchisees is a multiple of 13, that multiple will be given as bonuses. For example, a day where the franchisees sold a combined 26 baked goods will add 26 / 13 = 2 bonuses to the total.
+    • For every franchisee whose total sales across all days is a multiple of 13, that multiple will be given as bonuses. For example, a franchisee that sold a total of 39 baked goods will add 39 / 13 = 3 bonuses to the total.
+
+Determine the total number of bonuses awarded
+    
+### Input
+The input consists of 10 test cases. Each test case contains the following lines:
+    • A line containing the integer number of franchisees f and integer number of days d, separated by a space. f is between 4 and 130, and d is between 2 and 4745.
+    • d lines, one per day, containing f integers separated by spaces. Each integer specifies a number of sales. The first of these lines gives the sales for each franchise on the first day, the second gives the sales for each franchise on the second day, and so on. Each integer is between 1 and 13000.
+
+### Output
+For each test case, output the total number of bonuses awarded. """
+
+### Solution
+for test in range(10):
+    baker_brie = input().split() # list with number of franchisees and days
+    f = int(baker_brie[0]) # franchisees
+    d = int(baker_brie[1]) # days
+
+    sales = [] # list for the sales per day and per franchisee 
+    for i in range(d):
+        sales.append(input().split()) # sales per day of each franchisee
+        for j in range(f):
+            sales[i][j] = int(sales[i][j]) # convert each element of the list in integers
+    
+    bonus = 0
+    # For every day on which the total sales across all franchisees is a multiple of 13
+    for row in range(d):
+        sum_per_day = sum(sales[row])
+        if sum_per_day % 13 == 0:
+            bonus += sum_per_day // 13 # '//' floor division - return an integer
+
+    # For franchisee on which the total sales across all days is a multiple of 13          
+    for column in range(f):
+        sum_per_franchisee = 0
+        for r in range(d): 
+            sum_per_franchisee = sum_per_franchisee + sales[r][column]
+        if sum_per_franchisee % 13 == 0:
+            bonus += sum_per_franchisee // 13 # '//' floor division - return an integer
+
+    print(bonus) # total number of bonuses per each test case
