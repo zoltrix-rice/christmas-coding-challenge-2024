@@ -1,0 +1,59 @@
+""" ### Challenge
+Help Wesley determine his final score in Dance Dance Revolution.
+There are 4 different moves that can be played - up, down, left, and right.
+The song that Wesley plays consists of multiple beats and he will match each beat with a single move. Every move is worth 1 point (regardless of whether it is part of a combo or not). The song is described by a sequence of characters consisting of U, D, L, and R, representing the moves up, down, left, and right. We will call this sequence 'S'
+
+A combo is a sequence of moves played in succession. There are M combos, each with a point value Pi. To determine which moves are part of combos, the following algorithm is used:
+
+    1. Set the current move to the first move that Wesley performs.
+    2. Select the longest combo such that the moves in the combo match the next group of moves (starting from the current move) in the sequence of moves that Wesley performs (in the same order), where 'Ci' is the length of the chosen combo. It may be the case that such a combo does not exist, in which case, the longest combo has a length of 0
+    3. The current move is the move after the longest combination (or the move after the current move if there is no combination). If the sequence ends, the algorithm stops.
+    4. Go to step 2.
+
+NOTE: It can be seen that a single move may only correspond to at most one combo, although the same combo may be played multiple times.
+    No two combos will be identical.
+
+Given a series of moves that Wesley performs, can you determine how many points he scored?
+
+### Input
+The first line will contain a string 'S', Wesley's moves. Each character will be one of U, D, L, or R.
+The second line of input will contain 'M', the number of different combos.
+The next lines will each contain 'C', the combo sequence and 'P', the points the combo is worth. Each character in 'C' will be one of U, D, L, or R.
+
+### Output
+Output a single integer, the number of points that Wesley scored."""
+
+### Solution
+
+# Read the data
+S = input() # Sequence
+M = int(input())  # number of different combos
+
+C = [] #  Combo combination
+P = []  # Points of each combo
+
+for _ in range(M): # use _ because we don't use/need a variable e.g.'i' in this loop
+    csequence = input().split()
+    C.append(csequence[0])
+    P.append(int(csequence[1]))
+
+# Calculating the points
+total_points = len(S)
+j = 0
+
+while j < len(S):
+    longest_match_length = 0
+    best_points = 0
+    for x in range(len(C)):
+        combo_len = len(C[x])
+        if S[j:j+combo_len] == C[x] and combo_len > longest_match_length:
+            longest_match_length = combo_len 
+            best_points = P[x]
+
+    if longest_match_length > 0:
+        total_points += best_points
+        j += longest_match_length  # jump over the length of the combo
+    else:
+        j += 1  # to the next iteration
+        
+print(total_points)
