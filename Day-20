@@ -1,0 +1,25 @@
+### Solution
+N = int(input()) # number of drawn cards
+drawn = []
+
+for i in range(N):
+    drawn.append(int(input()))
+
+sum_cards = sum(drawn[:])
+x = 21 - sum_cards # difference from the sum of the cards so far to 21
+
+count = 0
+for j in range(N):
+    if drawn[j] <= x:
+        count += 1
+if x <= 9:
+    remaining = x * 4 - count
+elif x == 10:
+    remaining = (9 * 4) + (3 * 4) - count
+else:
+    remaining = 52 - count
+
+if (52 - remaining - N) > remaining:
+    print('DOSTA') # STOP
+else:
+    print('VUCI') # DRAW
