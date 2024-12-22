@@ -1,0 +1,95 @@
+"""
+### Challenge
+Lena has 'n' unopened boxes of action figures. The boxes cannot be opened (otherwise the action figures lose their value), so the order of action figures in a box cannot be changed. Further, a box cannot be rotated (otherwise the action figures will be facing the wrong way).
+Each action figure is specified by its height. For example, one of the boxes might have three action figures, from left to right, of heights 4, 5, and 7. When I talk about a box of action figures, I’ll always list the heights from left to right.
+Lena wants to organize the boxes, which means to arrange the boxes so that heights of action figures increase or stay the same from left to right.
+Whether she can organize the boxes or not depends on the heights of action figures in the boxes. For example, if a first box has action figures of heights 4, 5, and 7, and a second box has action figures of heights 1 and 2, then she can organize these boxes by putting the second box first. But if we keep the first box as is and change the second box to have action figures of heights 6 and 8, then there’s no way to organize these boxes. Determine whether it’s possible for Lena to organize the boxes.
+
+### Input
+The input consists of the following lines:
+• A line containing integer n, the number of boxes. n is between 1 and 100.
+• n lines, one for each box. Each of these lines begins with integer k, indicating the number of action figures in this box. k is between 1 and 100. (Since k is at least 1, we don’t have to worry about empty boxes.) Following k, there are k integers giving the heights of the action figures from left to right in this box. Each height is an integer
+between 1 and 10,000. There is a space between each pair of integers on the line.
+
+### Output
+If Lena can organize the boxes, output YES; otherwise, output NO. """
+
+### Solution
+def read_boxes(n):
+    """
+    n is the number of boxes to read.
+
+    Read the boxes from the input, and return them as a list of boxes; each box is a list of action figure heights.
+    """
+    boxes = []
+    for i in range(n):
+        boxes.append(input().split())
+        for j in range(len(boxes[i])):
+            boxes[i][j] = int(boxes[i][j])
+    return boxes
+
+def all_boxes_OK(boxes):  
+    """
+    'boxes' is a list of boxes; each box is a list of action figure heights.
+
+    Return True if each box in boxes has its action figures in nondecreasing  (equal or increasing) order of height, False otherwise.
+    """  
+    for box in boxes:
+        if not box_ok(box):
+            return False            
+    return True 
+
+def box_ok(box):
+    """
+    'box' is the list of action figure heights in a given box. 
+    Called by all_boxes_OK(boxes)
+    Return True if the heights in box are in nondecreasing order, False otherwise.
+    """
+    for j in range(len(box)-1):
+        if (box[j] > box[j+1]):
+            return False
+    return True
+   
+def new_list(boxes):
+    """
+    'boxes' is a list of boxes; each box is a list of action figure heights.
+
+    Return the list 'endpoints', where each value is a list of two values: the heights of the leftmost and rightmost action figures in a box. 
+    """
+    endpoints = []
+    for box in boxes:
+        endpoints.append([box[0], box[-1]])
+    return endpoints        
+
+def organized(endpoints):
+    """
+    'endpoints' is a list, where each value is a list of two values: the heights of the leftmost and rightmost action figures in a box.
+    
+    Requires: endpoints is sorted by action figure heights.
+
+    Return True if the endpoints came from boxes that can be put in order, False otherwise.
+    """
+    for i in range(len(endpoints)-1):
+        if endpoints[i][1] > endpoints[i+1][0]:
+            return False
+    return True
+
+# Main Program
+
+# Read input
+n = int(input()) # number of boxes
+boxes = read_boxes(n)
+
+# Check whether all boxes are OK
+if not all_boxes_OK(boxes):
+    print('NO')
+else:
+    # Obtain a new list of boxes with only left and right heights
+    endpoints = new_list(boxes) 
+    # Sort boxes
+    endpoints.sort()
+    # Determine whether boxes are organized
+    if not organized(endpoints):
+        print('NO')
+    else:
+        print('YES')
